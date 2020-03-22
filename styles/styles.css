@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500&display=swap');
+
+html, body {
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+body {
+    background: linear-gradient(to right, #0b9cef, #0bef7c);
+}
+
+.wrapper {
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vkf-modal {
+    display: flex;
+    width: 40rem;
+    flex-flow: column;
+    border-radius: 1rem;
+    box-shadow: 0 0 .5rem rgba(0, 0, 0, .5);
+    font-family: 'Fira Sans', sans-serif;
+    overflow: hidden;
+    position: relative;
+}
+
+.vkf-modal__header {
+    padding: 1rem;
+    background: #ff8663;
+    color: white;
+    font-weight: 500;
+    display: flex;
+}
+
+.vkf-modal__close:hover {
+    cursor: pointer;
+}
+
+
+.vkf-modal__title {
+    flex-grow: 1;
+    margin-right: 1rem;
+}
+
+.vkf-modal__search-area {
+    padding: .5rem 1rem;
+    box-sizing: border-box;
+    background: #f0f0f0;
+    display: flex;
+}
+
+.vkf-modal__friends-area {
+    flex-grow: 1;
+    width: 50%;
+}
+
+.vkf-modal__friends-area:first-child {
+    border-right: 1px solid #f0f0f0;
+}
+
+
+.vkf-modal__friends-area_all {
+    padding-right: .5rem;
+}
+
+.vkf-modal__friends-area_selected {
+    padding-left: .5rem;
+}
+
+
+.vkf-modal__search-block {
+    flex-grow: 1;
+    display: flex;
+}
+.vkf-modal__search-field {
+    outline: none;
+    color: #4f4f4f;
+    flex-grow: 1;
+    padding: .5rem 1rem;
+    border-radius: 1rem;
+    font-size: .825rem;
+    border: none;
+}
+
+.vkf-modal__search-block_all {
+    position: relative;
+    /*width: 100%;*/
+}
+
+.vkf-modal__search-block_all .vkf-modal__search-icon {
+    position: absolute;
+    top: .5rem;
+    left: .5rem;
+    color: #c4c4c4;
+}
+
+.vkf-modal__search-block_all .vkf-modal__search-field {
+    padding-left: 2rem;
+}
+
+.vkf-modal__friends {
+    display: flex;
+    background: white;
+}
+
+.vkf-modal__friends-block {
+    padding: 1rem 1rem 0 1rem;
+}
+
+.vkf-modal__friends-title {
+    padding-bottom: .5rem;
+    font-weight: 500;
+    color: #4f4f4f;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.vkf-modal__friends-list {
+    display: flex;
+    flex-flow: column;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 18rem;
+    overflow: auto;
+}
+
+
+.vkf-modal__preloader, .vkf-modal__not-friends {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+}
+
+.vkf-modal__not-friends .vkf-modal__notFriends-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.vkf-modal__friends-item {
+    padding: .5rem;
+    display: flex;
+    align-items: center;
+}
+
+.vkf-modal__friends-item:hover {
+    background: #f0f0f0;
+    cursor: move;
+}
+
+.vkf-modal__item-logo {
+    max-width: 3rem;
+    margin-right: .5rem;
+    color: #4f4f4f;
+    border-radius: 50%;
+}
+
+.vkf-modal__item-name {
+    flex-grow: 1;
+    margin-right: .5rem;
+}
+
+.vkf-modal__action_add, .vkf-modal__action_remove {
+    font-size: 1.5rem;
+    color: #c4c4c4;
+    font-weight: 500;
+}
+
+.vkf-modal__action_add:hover, .vkf-modal__action_remove:hover {
+    cursor: pointer;
+}
+
+.vkf-modal__controls {
+    background: #f0f0f0;
+    padding: .5rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.vkf-modal__save-button, .vkf-modal__cuncel-button {
+    outline: none;
+    padding: .625rem 1rem;
+    background: #ff8663;
+    font-size: .825rem;
+    font-weight: 300;
+    color: white;
+    font-family: 'Fira Sans', sans-serif;
+    border: none;
+    border-radius: 1rem;
+}
+
+.vkf-modal__cuncel-button {
+    background: inherit;
+    color: #4f4f4f;
+    font-weight: 500; 
+    margin-right: 1rem;
+}
+
+.vkf-modal__save-button:hover, .vkf-modal__cuncel-button:hover {
+    cursor: pointer;
+}
+
+.vkf-modal__confirm-area {
+    position: absolute;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.confirm-window {
+    background: white;
+    min-width: 15rem;
+    overflow: hidden;
+    display: flex;
+    flex-flow: column;
+    border-radius: 1rem;
+    box-shadow: 0 0 .3rem rgba(0, 0, 0, .5)
+}
+
+.confirm-window__header {
+    background: #ff8663;
+    padding: .5rem 1rem;
+    color: white;
+    display: flex;
+}
+
+.vkf-modal__title {
+    flex-grow: 1;
+}
+
+.confirm-window__main {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    padding: .825rem 1rem;
+}
+
+.confirm-window__question-icon {
+    font-size: 2rem;
+}
+
+.confirm-window__controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .3rem 1rem;
+    background: #f0f0f0;
+}

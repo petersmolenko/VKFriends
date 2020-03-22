@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <title>VKFriends</title>
+        <link rel="stylesheet" href="styles/styles.css">
+        <script src="https://kit.fontawesome.com/b11fe38f14.js" crossorigin="anonymous"></script>
+        <script src="https://vk.com/js/api/openapi.js?167" type="text/javascript"></script>
+        <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="vkf-modal" id="vkModal">
+                <div class="vkf-modal__header">
+                    <div class="vkf-modal__title">Выберите друзей</div>
+                    <div class="vkf-modal__close">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="vkf-modal__friends">
+                    <div class="vkf-modal__friends-area">
+                        <div class="vkf-modal__search-area vkf-modal__friends-area_all">
+                            <div class="vkf-modal__search-block vkf-modal__search-block_all">
+                                <div class="vkf-modal__search-icon">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </div>
+                                <input type="text" class="vkf-modal__search-field" placeholder="Начните вводить имя друга">
+                            </div>
+                        </div>
+                        <div class="vkf-modal__friends-block vkf-modal__friends-area_all">
+                            <div class="vkf-modal__friends-title">Остальные друзья (<span id="otherFriendsCount">0</span>)</div>
+                            <ul class="vkf-modal__friends-list" id="otherFriendsList">
+                                <div class="vkf-modal__preloader">
+                                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="vkf-modal__friends-area">
+                        <div class="vkf-modal__search-area vkf-modal__friends-area_selected">
+                            <div class="vkf-modal__search-block">
+                                <input type="text" class="vkf-modal__search-field" placeholder="Начните вводить имя друга">
+                            </div>
+                        </div>
+                        <div class="vkf-modal__friends-block vkf-modal__friends-area_selected">
+                            <div class="vkf-modal__friends-title">Друзья в списке (<span id="chosenFriendsCount">0</span>)</div>
+                            <ul class="vkf-modal__friends-list" id="chosenFriendsList">
+                                <div class="vkf-modal__preloader">
+                                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="vkf-modal__controls">
+                    <button class="vkf-modal__save-button" id="saveBtn">Сохранить</button>
+                </div>
+                <div class="vkf-modal__confirm-area" id="confirmArea"></div>
+            </div> 
+        </div>
+        <script type="handlebars/template" id="friendItemListTemplate">
+            {{#*inline "friendItem"}}
+                <li class="vkf-modal__friends-item" draggable="true" data-friend="{{ id }}">
+                    <img src="{{ photo_50 }}" alt="" class="vkf-modal__item-logo">
+                    <div class="vkf-modal__item-name">{{ first_name }} {{ last_name }}</div>
+                    {{#if isChosen}}
+                        <div class="vkf-modal__action vkf-modal__action_remove"><i class="fa fa-times" aria-hidden="true"></i></div>
+                    {{else}}
+                        <div class="vkf-modal__action vkf-modal__action_add"><i class="fa fa-plus" aria-hidden="true"></i></div>
+                    {{/if }}
+                </li>
+            {{/inline}}
+            {{#each friends}}
+                {{>friendItem isChosen=../isChosen}}
+            {{/each}}
+        </script>
+        <script type="handlebars/template" id="notFriendsTemplate">
+            <div class="vkf-modal__not-friends">
+                <i class="fa fa-users vkf-modal__notFriends-icon" aria-hidden="true"></i>
+                <span class="vkf-modal__message">В списке нет друзей!</span>
+            </div>
+        </script>
+
+        <script type="handlebars/template" id="confirmTemplate">
+            
+                <div class="confirm-window">
+                    <div class="confirm-window__header">
+                        <div class="vkf-modal__title">{{#if this}}Успех{{else}}Сохранить{{/if}}</div>
+                        <div class="vkf-modal__close"><i class="fa fa-times" aria-hidden="true"></i></div>
+                    </div>
+                    <div class="confirm-window__main">
+                        {{#if this}}
+                            <div class="confirm-window__question-icon">
+                                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                            </div>
+                            <div class="confirm-window__question">
+                                Список сохранен!
+                            </div>
+                        {{else}}
+                            <div class="confirm-window__question-icon">
+                                <i class="fa fa-question-circle" aria-hidden="true"></i>
+                            </div>
+                            <div class="confirm-window__question">
+                                Сохранить список друзей?
+                            </div>
+                        {{/if}}
+                    </div>
+                    <div class="confirm-window__controls">
+                        {{#if this}}
+                            <button class="vkf-modal__save-button">Хорошо</button>
+                        {{else}}
+                        <button class="vkf-modal__cuncel-button">Нет</button>
+                        <button class="vkf-modal__save-button">Да</button>
+                        {{/if}}
+                        
+                    </div>
+                </div>
+        </script>
+
+        <script defer type="module" src="scripts/entry.js"></script>
+    </body>
+</html>
